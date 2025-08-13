@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lawyers_notebook/components/header/my_app_bar.dart';
+import 'package:lawyers_notebook/components/default_header/default_header.dart';
 import 'package:lawyers_notebook/models/theme_preferance.dart';
 
 class HelpView extends StatefulWidget {
@@ -18,7 +18,10 @@ class _HelpView extends State<HelpView> {
   Widget build(BuildContext context) {
     return Scaffold(
       // Would be better if the theme is handled from a state or something
-      appBar: MyAppBar(preferance: ThemePreferance.dark),
+      appBar: DefaultHeader(
+        writtenText: "Help",
+        preferance: ThemePreferance.dark,
+      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

@@ -21,9 +21,13 @@ class MyAppBar extends StatefulWidget implements PreferredSizeWidget {
 class _MyAppBar extends State<MyAppBar> {
   String getCurrentDate() {
     var weekDay = DateTime.now().weekday;
-    var dayName = WeekDays.values
-        .firstWhere((x) => x.getValue() == weekDay)
-        .getName();
+    var dayName = "";
+    for (var entry in WeekDays.values) {
+      if (entry.value == weekDay) {
+        dayName = entry.name;
+        break;
+      }
+    }
     return dayName;
   }
 
