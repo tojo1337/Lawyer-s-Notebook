@@ -5,6 +5,8 @@ import 'package:lawyers_notebook/models/day_of_the_week.dart';
 import 'package:lawyers_notebook/models/month_of_the_year.dart';
 import 'package:lawyers_notebook/models/theme_preferance.dart';
 import 'package:lawyers_notebook/themes/theme_design.dart';
+import 'package:lawyers_notebook/views/ecourt_view.dart';
+import 'package:lawyers_notebook/views/new_case.dart';
 
 class MyAppBar extends StatefulWidget implements PreferredSizeWidget {
   final ThemePreferance preferance;
@@ -38,6 +40,20 @@ class _MyAppBar extends State<MyAppBar> {
     return formattedDate;
   }
 
+  void navToNew(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const NewCase()),
+    );
+  }
+
+  void navToEcourt(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const EcourtView()),
+    );
+  }
+
   void doNothing() {}
 
   @override
@@ -54,15 +70,21 @@ class _MyAppBar extends State<MyAppBar> {
         onPressed: doNothing,
         style: ThemeDesign().getHeaderButtonStyle(widget.preferance),
         child: Center(
-          child: Text(
-            getDetailedDate(),
-            style: Theme.of(context).textTheme.bodyMedium,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Text(
+                getDetailedDate(),
+                style: Theme.of(context).textTheme.bodyMedium,
+              ),
+              FaIcon(FontAwesomeIcons.chevronDown, color: Colors.white),
+            ],
           ),
         ),
       ),
       actions: [
         IconButton(
-          onPressed: doNothing,
+          onPressed: () => navToNew(context),
           icon: FaIcon(
             FontAwesomeIcons.plus,
             color: ThemeDesign().actionButtonColor(widget.preferance),
@@ -70,7 +92,7 @@ class _MyAppBar extends State<MyAppBar> {
           ),
         ),
         IconButton(
-          onPressed: doNothing,
+          onPressed: () => navToEcourt(context),
           icon: FaIcon(
             FontAwesomeIcons.scaleBalanced,
             color: ThemeDesign().actionButtonColor(widget.preferance),
